@@ -2,17 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="LAST-V2X: Language-Driven Adaptive Scenario Synthesis and Testing for Communication-Induced Failures in V2X Safety Applications">
-  <meta name="keywords" content="V2X, connected vehicles, scenario generation, large language models, fault injection, simulation-based testing, CARLA">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LAST-V2X</title>
+  <meta name="description"
+        content="LAST-V2X turns natural-language V2X test intents into executable CARLA scenarios and refines them until they expose causally verified communication-induced safety failures.">
+  <meta name="keywords" content="V2X, connected vehicles, scenario generation, large language models, fault injection, simulation-based testing, CARLA">
+  <meta property="og:title" content="LAST-V2X">
+  <meta property="og:description" content="Language-driven adaptive scenario synthesis and testing for communication-induced failures in V2X safety applications.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://keshuw95.github.io/LAST-V2X/">
+  <meta property="og:image" content="https://keshuw95.github.io/LAST-V2X/static/images/paper/framework.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
@@ -22,387 +27,295 @@
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">LAST-V2X</h1>
-          <h2 class="subtitle is-3 publication-subtitle">
-            <b>L</b>anguage-Driven <b>A</b>daptive <b>S</b>cenario Synthesis and <b>T</b>esting
-            for Communication-Induced Failures in V2X Safety Applications
-          </h2>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keshuw95.github.io/">Keshu Wu</a><sup>1</sup>,</span>
-            <span class="author-block">Hao Zhang<sup>1</sup>,</span>
-            <span class="author-block">Rui Gan<sup>2</sup>,</span>
-            <span class="author-block">Pei Li<sup>3</sup>,</span>
-            <span class="author-block">Jiwan Jiang<sup>1</sup>,</span>
-            <span class="author-block">Yang Zhou<sup>1,*</sup></span>
-          </div>
+<!-- Top navigation. -->
+<nav class="topnav" aria-label="Sections">
+  <div class="wrap topnav-inner">
+    <a class="brand" href="#top"><i class="fas fa-broadcast-tower"></i> LAST-V2X</a>
+    <div class="topnav-links">
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#bibtex">BibTeX</a>
+      <a href="./static/LAST-V2X.pdf" class="nav-pdf"><i class="fas fa-file-pdf"></i> Paper</a>
+    </div>
+  </div>
+</nav>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Texas A&amp;M University,</span>
-            <span class="author-block"><sup>2</sup>University of Wisconsin-Madison,</span>
-            <span class="author-block"><sup>3</sup>University of Wyoming</span>
-          </div>
-          <div class="is-size-6 publication-note">
-            <span><sup>*</sup>Corresponding author</span>
-          </div>
+<!-- Hero. -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">V2X safety testing &middot; LLM agents &middot; CARLA</p>
+    <h1 class="hero-title">LAST-V2X</h1>
+    <p class="hero-subtitle">
+      <b>L</b>anguage-Driven <b>A</b>daptive <b>S</b>cenario Synthesis and <b>T</b>esting
+      for Communication-Induced Failures in V2X Safety Applications
+    </p>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="./static/LAST-V2X.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- arXiv Link. -->
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark" disabled>
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv (coming soon)</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark" disabled>
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code (coming soon)</span>
-                </a>
-              </span>
-            </div>
+    <p class="authors">
+      <span><a href="https://keshuw95.github.io/">Keshu Wu</a><sup>1</sup></span>
+      <span>Hao Zhang<sup>1</sup></span>
+      <span>Rui Gan<sup>2</sup></span>
+      <span>Pei Li<sup>3</sup></span>
+      <span>Jiwan Jiang<sup>1</sup></span>
+      <span>Yang Zhou<sup>1,*</sup></span>
+    </p>
+    <p class="affils">
+      <span><sup>1</sup>Texas A&amp;M University</span>
+      <span><sup>2</sup>University of Wisconsin-Madison</span>
+      <span><sup>3</sup>University of Wyoming</span>
+      <span class="muted"><sup>*</sup>Corresponding author</span>
+    </p>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="./static/LAST-V2X.pdf">
+        <i class="fas fa-file-pdf"></i> Paper
+      </a>
+      <span class="btn btn-disabled" aria-disabled="true" title="Coming soon">
+        <i class="ai ai-arxiv"></i> arXiv <small>soon</small>
+      </span>
+      <span class="btn btn-disabled" aria-disabled="true" title="Coming soon">
+        <i class="fab fa-github"></i> Code <small>soon</small>
+      </span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Teaser. -->
+  <section class="teaser">
+    <div class="wrap">
+      <figure class="card figure-card teaser-card">
+        <img src="./static/images/paper/framework.png" class="zoomable"
+             alt="LAST-V2X framework: LLM agent analysis, retrieval-augmented scenario grounding, automated V2X scenario synthesis, and scenario refinement.">
+      </figure>
+      <p class="tldr">
+        Write a V2X test in plain language. <span class="accent">LAST-V2X</span> builds it in CARLA,
+        injects message faults, and keeps a failure <b>only if degraded V2X information caused it</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Key numbers. -->
+  <section class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat">
+        <span class="stat-value">100</span>
+        <span class="stat-label">language-driven scenes<br>8 towns &middot; 6 V2X apps</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">0</span>
+        <span class="stat-label">spurious failures under<br>healthy communication</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">7<i class="fas fa-long-arrow-alt-right"></i>32</span>
+        <span class="stat-label">verified failures of 50<br>after refinement</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">60<i class="fas fa-long-arrow-alt-right"></i>1</span>
+        <span class="stat-label">alarms with matched<br>twin rollouts</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method. -->
+  <section class="section" id="method">
+    <div class="wrap">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-lead">Four modules turn one prompt into a verified, minimal failure case.</p>
+
+      <div class="modules">
+        <div class="module m1">
+          <span class="module-num">1</span>
+          <i class="fas fa-comment-dots module-icon"></i>
+          <h3>LLM Agent Analysis</h3>
+          <p>Compiles the prompt into a typed spec; an Age-of-Information check rejects faults that cannot matter.</p>
+        </div>
+        <div class="module m2">
+          <span class="module-num">2</span>
+          <i class="fas fa-map-marked-alt module-icon"></i>
+          <h3>Scenario Grounding</h3>
+          <p>Retrieves roadway, V2X and driver knowledge to place the test on a feasible junction.</p>
+        </div>
+        <div class="module m3">
+          <span class="module-num">3</span>
+          <i class="fas fa-satellite-dish module-icon"></i>
+          <h3>V2X Scenario Synthesis</h3>
+          <p>Runs SPaT, MAP and BSM over a spatial channel with delay, loss, skew and wrong content.</p>
+        </div>
+        <div class="module m4">
+          <span class="module-num">4</span>
+          <i class="fas fa-redo-alt module-icon"></i>
+          <h3>Scenario Refinement</h3>
+          <p>Search and LLM self-reflection repair ineffective tests; delta debugging minimizes the rest.</p>
+        </div>
+      </div>
+
+      <!-- Causal admission. -->
+      <div class="card admission">
+        <p class="admission-title"><i class="fas fa-balance-scale"></i> Causal admission rule</p>
+        <div class="admission-row">
+          <div class="ego ego-bad">
+            <i class="fas fa-car"></i>
+            <span>message-driven ego</span>
+            <b><i class="fas fa-times-circle"></i> fails</b>
           </div>
+          <span class="op">&and;</span>
+          <div class="ego ego-good">
+            <i class="fas fa-car"></i>
+            <span>ground-truth twin</span>
+            <b><i class="fas fa-check-circle"></i> safe</b>
+          </div>
+          <span class="op">&rArr;</span>
+          <div class="verdict">communication-induced<br>failure</div>
+        </div>
+        <p class="admission-note">Same traffic, same seed; only the V2X information differs.</p>
+      </div>
+
+      <!-- Failure mechanisms. -->
+      <h3 class="sub-title">Three ways V2X information fails</h3>
+      <div class="mechanisms">
+        <div class="mech">
+          <i class="fas fa-hourglass-half"></i>
+          <h4>Stale-but-detectable</h4>
+          <p>Loss or delay ages the data; the app can notice and fall back.</p>
+        </div>
+        <div class="mech">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h4>Fresh-but-wrong</h4>
+          <p>Messages look current but lie, so the vehicle trusts a wrong state.</p>
+        </div>
+        <div class="mech">
+          <i class="fas fa-eye-slash"></i>
+          <h4>Silent-by-absence</h4>
+          <p>A conflicting vehicle never transmits, so it is invisible to the app.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Results. -->
+  <section class="section section-alt" id="results">
+    <div class="wrap">
+      <h2 class="section-title">Results</h2>
 
-<section class="hero teaser">
-  <div class="container is-max-widescreen">
-    <div class="hero-body">
-      <a href="./static/images/paper/framework.png" target="_blank">
-        <img src="./static/images/paper/framework.png" class="paper-figure"
-             alt="Overview of the LAST-V2X framework: LLM agent analysis, retrieval-augmented scenario grounding, automated V2X scenario synthesis, and scenario refinement."/>
-      </a>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">LAST-V2X</span> turns natural-language V2X test intents into executable,
-        communication-aware CARLA scenarios, and refines them until they expose
-        <i>causally verified</i> communication-induced safety failures.
-      </h2>
-    </div>
-  </div>
-</section>
-
-
-<section class="section stats-strip">
-  <div class="container is-max-desktop">
-    <div class="columns is-multiline is-centered has-text-centered">
-      <div class="column is-one-quarter-desktop is-half-tablet">
-        <p class="stat-value">100</p>
-        <p class="stat-label">natural-language scenes across 8 CARLA towns and 6 V2X applications</p>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" role="tab" aria-selected="true" data-tab="gen">Generation</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="refine">Refinement</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="corridor">RSU corridor</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="multicv">Multi-CV</button>
       </div>
-      <div class="column is-one-quarter-desktop is-half-tablet">
-        <p class="stat-value">0</p>
-        <p class="stat-label">spurious failures under healthy communication</p>
-      </div>
-      <div class="column is-one-quarter-desktop is-half-tablet">
-        <p class="stat-value">7 &rarr; 32</p>
-        <p class="stat-label">causally verified failures of 50 after adaptive refinement</p>
-      </div>
-      <div class="column is-one-quarter-desktop is-half-tablet">
-        <p class="stat-value">60 &rarr; 1</p>
-        <p class="stat-label">alarms when matched rollouts replace a divergence-only monitor</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Connected-vehicle safety applications couple communication with physical driving: delayed,
-            missing, or incorrect vehicle-to-everything (V2X) information can alter vehicle decisions and
-            compromise safety. Testing such failures requires jointly specifying traffic interactions,
-            communication conditions, fault timing, and application logic, creating a large and
-            semantically complex scenario space that is difficult to construct manually. Natural language
-            provides an intuitive interface for expressing these coupled test intents, but translating them
-            into executable scenarios requires ensuring both physical feasibility and causal validity.
-          </p>
-          <p>
-            This paper presents <b>LAST-V2X</b>, an LLM-orchestrated framework that transforms
-            natural-language V2X test intents into executable, communication-aware CARLA scenarios and
-            adaptively refines them to expose causally verified failures. A schema-constrained LLM compiler
-            grounds test intents using roadway, V2X, fault, and driver-behavior knowledge, while an analytic
-            Age-of-Information verifier rejects temporally ineffective scenarios before simulation. During
-            simulation, Signal Phase and Timing (SPaT), MAP, and Basic Safety Message (BSM) messages are
-            transmitted through a spatial communication model, where delays, losses, timestamp errors, and
-            incorrect message content can be introduced. To determine whether communication is truly
-            responsible for a safety failure, LAST-V2X runs two matched scenarios under the same physical
-            traffic conditions: one ego vehicle uses degraded V2X information, while the other receives the
-            corresponding non-degraded information. A failure is accepted only when the degraded information
-            leads to a worse safety outcome. The resulting simulation evidence is then used to refine
-            ineffective scenarios through parameter search and LLM self-reflection, after which successful
-            failure cases are simplified into minimal reproducible scenarios.
-          </p>
-          <p>
-            Experiments were conducted across eight CARLA towns using a 100-scene natural-language
-            benchmark. Under healthy communication, LAST-V2X produces no spurious communication-induced
-            failures. Under communication faults, it identifies three distinct failure mechanisms:
-            stale-but-detectable, fresh-but-wrong, and silent-by-absence. A separate 50-scene refinement
-            suite further evaluates the adaptive refinement process. LAST-V2X increases the number of
-            causally verified failures from 7 after the initial execution to 32 after refinement, and each
-            successful case is reduced to a minimal single-fault scenario.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Contributions. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Key Ideas</h2>
-        <div class="columns">
-          <div class="column">
-            <div class="box idea-box">
-              <h3 class="title is-5">Coupled physical&ndash;information generation</h3>
-              <p>
-                LAST-V2X jointly constructs the physical traffic scene and the V2X information the vehicle
-                perceives, with feasibility checks that reject ineffective tests before simulation.
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="box idea-box">
-              <h3 class="title is-5">Causal verification</h3>
-              <p>
-                Matched degraded and non-degraded executions decide whether a V2X fault actually changes
-                the physical safety outcome. A failure counts only if the message-driven ego fails and
-                its ground-truth twin does not.
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="box idea-box">
-              <h3 class="title is-5">Execution-grounded refinement</h3>
-              <p>
-                Parameter search corrects quantitative deficiencies, LLM self-reflection revises
-                semantically ineffective intents, and delta debugging reduces each success to a minimal
-                single-fault scenario.
-              </p>
-            </div>
+      <!-- Generation. -->
+      <div class="panel is-active" id="panel-gen" role="tabpanel">
+        <div class="panel-head">
+          <p>100 plain-language prompts compile, ground and run to completion with zero false failures.</p>
+          <div class="pills">
+            <span class="pill">100/100 executed</span>
+            <span class="pill">365/367 clean spawns</span>
+            <span class="pill">0 false admissions</span>
           </div>
         </div>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/generation.png" class="zoomable" loading="lazy"
+               alt="Scenario generation over 100 scenes.">
+          <figcaption>Coverage, driving quality and message-driven vs. ground-truth gaps over 100 scenes.</figcaption>
+        </figure>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/scene_d13.png" class="zoomable" loading="lazy"
+               alt="A nine-agent left turn in Town03 under a healthy channel.">
+          <figcaption>A nine-agent left turn in Town03: prompt, four viewpoints, signal estimates and message deliveries.</figcaption>
+        </figure>
       </div>
-    </div>
 
-    <!-- Failure mechanisms. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h3 class="title is-4">Three communication-induced failure mechanisms</h3>
-        <div class="content has-text-justified">
-          <ul>
-            <li><b>Stale-but-detectable.</b> Loss or delay raises the Age of Information, which the
-              application can detect, often triggering a safe fallback.</li>
-            <li><b>Fresh-but-wrong.</b> Messages still look current but carry incorrect content (frozen SPaT,
-              timestamp skew, wrong lane-to-signal mapping), so the vehicle trusts and acts on a wrong
-              traffic state.</li>
-            <li><b>Silent-by-absence.</b> Safety-critical information never arrives, for example when a
-              conflicting vehicle does not transmit BSMs at all.</li>
-          </ul>
+      <!-- Refinement. -->
+      <div class="panel" id="panel-refine" role="tabpanel">
+        <div class="panel-head">
+          <p>Search and self-reflection turn ineffective fault tests into causally verified failures.</p>
+          <div class="pills">
+            <span class="pill">7 &rarr; 32 of 50 admitted</span>
+            <span class="pill">median 8 runs to first failure</span>
+            <span class="pill">8 rescued by reflection</span>
+          </div>
         </div>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/refinement_stats.png" class="zoomable" loading="lazy"
+               alt="Scenario refinement on the 50-scene fault suite.">
+          <figcaption>Outcome by fault class, effort to first admission, and safety margin during search.</figcaption>
+        </figure>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/refinement_case.png" class="zoomable" loading="lazy"
+               alt="Refinement example rlvw_late_freeze.">
+          <figcaption><code>rlvw_late_freeze</code>: reflection moves a mistimed SPaT freeze into the decision window, and the ego now runs the red.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Corridor. -->
+      <div class="panel" id="panel-corridor" role="tabpanel">
+        <div class="panel-head">
+          <p>An RSU relay chain extends the information horizon past the vehicle's own radio.</p>
+          <div class="pills">
+            <span class="pill">0.5 &rarr; 2.6 junctions known ahead</span>
+            <span class="pill">stops 1.9 &rarr; 1.0</span>
+            <span class="pill">420 runs, 0 collisions</span>
+          </div>
+        </div>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/corridor.png" class="zoomable" loading="lazy"
+               alt="Corridor traversal along an RSU chain.">
+          <figcaption>One prompt, three information clauses: no V2X, direct SPaT and an RSU relay chain.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Multi-CV. -->
+      <div class="panel" id="panel-multicv" role="tabpanel">
+        <div class="panel-head">
+          <p>Cooperation is measurable, and pairwise: one-sided equipage buys nothing.</p>
+          <div class="pills">
+            <span class="pill">EEBL relay: 7/10 &rarr; 0/10 crashes</span>
+            <span class="pill">IMA: clean yield in 10/10 seeds</span>
+          </div>
+        </div>
+        <figure class="card figure-card">
+          <img src="./static/images/paper/multicv.png" class="zoomable" loading="lazy"
+               alt="Multi-CV cooperation: EEBL relay chain and IMA mutual yield.">
+          <figcaption>EEBL V2V relay chain (a&ndash;d) and IMA mutual yield (e&ndash;h), 10 seeds per condition.</figcaption>
+        </figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Results</h2>
-
-    <!-- Generation. -->
-    <h3 class="title is-4">Scenario generation at scale</h3>
-    <div class="content has-text-justified">
-      <p>
-        The 100 benchmark prompts describe only the traffic scene and environment. The parser infers the
-        V2X application, and retrieval finds feasible towns. All 100 scenes compile within two parse
-        attempts and run to completion. In the realized scenes, 365 of 367 spawns are clean, all 2,048
-        checked lane markings match the OpenDRIVE map, and 253 of 254 vehicles stay on route. Under healthy
-        communication the benchmark yields <b>zero</b> admitted communication-induced failures.
-      </p>
-    </div>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/generation.png" target="_blank">
-        <img src="./static/images/paper/generation.png" class="paper-figure" loading="lazy"
-             alt="Scenario generation over 100 scenes."/>
-      </a>
-      <figcaption>Scenario generation over 100 scenes. <b>a</b>, Application and town. <b>b</b>, Driving
-        quality of the normal and fault arms. <b>c</b>, Weather, time of day, and vehicles.
-        <b>d</b>, Message-driven versus ground-truth minimum gap. <b>e</b>, One scene per application.</figcaption>
-    </figure>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/scene_d13.png" target="_blank">
-        <img src="./static/images/paper/scene_d13.png" class="paper-figure" loading="lazy"
-             alt="A nine-agent left turn in Town03 under a healthy channel."/>
-      </a>
-      <figcaption>A nine-agent left turn in Town03 under a healthy channel. <b>a</b>, Prompt and compiled
-        specification. <b>b</b>, Six instants from four viewpoints. <b>c</b>, Agent paths and V2I range.
-        <b>d</b>, True and estimated signal phases. <b>e</b>, Message deliveries.</figcaption>
-    </figure>
-
-    <!-- Corridor. -->
-    <h3 class="title is-4">Corridor traversal along an RSU chain</h3>
-    <div class="content has-text-justified">
-      <p>
-        One prompt describes a four-junction corridor, and only its information clause changes between
-        runs: no V2X, direct SPaT, or an RSU relay chain. At a 50&nbsp;m radio range, the relay chain raises
-        the mean number of junctions known ahead from 0.5 to 2.6. Compared with no V2X, GLOSA cuts stops
-        from 1.9 to 1.0 and mean acceleration from 1.70 to 1.21&nbsp;m/s<sup>2</sup>, matching direct SPaT at
-        three times the radio range. Across 420 CARLA runs there are no red-light entries and no collisions.
-      </p>
-    </div>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/corridor.png" target="_blank">
-        <img src="./static/images/paper/corridor.png" class="paper-figure" loading="lazy"
-             alt="Corridor traversal along an RSU chain."/>
-      </a>
-      <figcaption>Corridor traversal along an RSU chain. <b>a</b>, Shared prompt. <b>b</b>, Clause, parsed
-        value, and 10-seed results per condition. <b>c</b>, Camera frames on the retrieved corridor.
-        <b>d</b>, Junctions with known SPaT. <b>e</b>,<b>f</b>, Ego speed without and with traffic.</figcaption>
-    </figure>
-
-    <!-- Multi-CV. -->
-    <h3 class="title is-4">Cooperative scenarios with multiple connected vehicles</h3>
-    <div class="content has-text-justified">
-      <p>
-        In an EEBL relay chain, a V2V rebroadcast lets the third vehicle brake 1.49&nbsp;s after the lead
-        with no collisions in 10 seeds. Without the relay, 7 of 10 runs end in a rear-end collision. In
-        IMA mutual yield, two equipped crossing vehicles interleave cleanly in 10 of 10 seeds. With one or
-        neither equipped, the encounter becomes a near miss with contact in 2 of 10 seeds: cooperation is
-        pairwise.
-      </p>
-    </div>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/multicv.png" target="_blank">
-        <img src="./static/images/paper/multicv.png" class="paper-figure" loading="lazy"
-             alt="Multi-CV cooperation: EEBL relay chain and IMA mutual yield."/>
-      </a>
-      <figcaption>Multi-CV cooperation: EEBL relay chain (a&ndash;d) and IMA mutual yield (e&ndash;h).</figcaption>
-    </figure>
-
-    <!-- Refinement. -->
-    <h3 class="title is-4">Scenario refinement at scale</h3>
-    <div class="content has-text-justified">
-      <p>
-        On a 50-scene fault suite that includes deliberately weak, mistimed, and ineffective cases, the
-        initial execution admits only 7 scenarios. Specification-space search finds failures in 23 of the
-        43 remaining targets, with a median of 8 executions to the first admission. LLM self-reflection
-        rescues 8, two of them beyond the reach of search. Together the two loops raise admitted failures
-        from <b>7 to 32</b>, and each is reduced to a minimal single-fault witness.
-      </p>
-    </div>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/refinement_stats.png" target="_blank">
-        <img src="./static/images/paper/refinement_stats.png" class="paper-figure" loading="lazy"
-             alt="Scenario refinement on the 50-scene fault suite."/>
-      </a>
-      <figcaption>Scenario refinement on the 50-scene fault suite. <b>a</b>, Outcome by fault class.
-        <b>b</b>, Executions or prompt revisions to first admission. <b>c</b>, Median best margin during
-        search.</figcaption>
-    </figure>
-    <div class="content has-text-justified">
-      <p>
-        In <code>rlvw_late_freeze</code>, the original SPaT freeze begins after the ego has already decided
-        to stop, so the run stays clean. From the execution evidence, the LLM identifies the mistimed fault
-        and moves the freeze into the decision window. After the revision, the message-driven ego enters on
-        red while its matched non-degraded twin stops, which is a causally verified failure.
-      </p>
-    </div>
-    <figure class="paper-figure-block">
-      <a href="./static/images/paper/refinement_case.png" target="_blank">
-        <img src="./static/images/paper/refinement_case.png" class="paper-figure" loading="lazy"
-             alt="Refinement example rlvw_late_freeze."/>
-      </a>
-      <figcaption>Refinement example <code>rlvw_late_freeze</code>. <b>a</b>, Prompt revisions by LLM
-        self-reflection. <b>b</b>,<b>c</b>, Paired runs of the original and revised prompts.</figcaption>
-    </figure>
-
-    <!-- Ablation. -->
-    <h3 class="title is-4">Ablation highlights</h3>
-    <div class="table-container">
-      <table class="table is-fullwidth is-narrow is-hoverable ablation-table">
-        <thead>
-          <tr><th>Removed component &mdash; metric</th><th class="has-text-right">With</th><th class="has-text-right">Without</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ground-truth rollout &mdash; alarms over 112 live scenes</td><td class="has-text-right"><b>1</b></td><td class="has-text-right">60</td></tr>
-          <tr><td>Ground-truth rollout &mdash; false alarms</td><td class="has-text-right"><b>0</b></td><td class="has-text-right">59</td></tr>
-          <tr><td>Height-aware blockage &mdash; in-range delivery coverage, Town10 (%)</td><td class="has-text-right"><b>100.0</b></td><td class="has-text-right">47.7</td></tr>
-          <tr><td>Feasibility gate &mdash; IMA admissions per 150-execution budget</td><td class="has-text-right"><b>29.0</b></td><td class="has-text-right">15.3</td></tr>
-          <tr><td>Launch conditioning &mdash; median opening cross-track error (m)</td><td class="has-text-right"><b>0.06</b></td><td class="has-text-right">1.22</td></tr>
-          <tr><td>Prompt reflection &mdash; non-admitted fault prompts rescued (of 43)</td><td class="has-text-right"><b>8</b></td><td class="has-text-right">0</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{wu2026lastv2x,
+  <!-- BibTeX. -->
+  <section class="section" id="bibtex">
+    <div class="wrap">
+      <h2 class="section-title">BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy-btn" type="button" data-copy="#bibtex-code"><i class="fas fa-copy"></i> <span>Copy</span></button>
+        <pre><code id="bibtex-code">@misc{wu2026lastv2x,
   author = {Wu, Keshu and Zhang, Hao and Gan, Rui and Li, Pei and Jiang, Jiwan and Zhou, Yang},
   title  = {{LAST-V2X}: Language-Driven Adaptive Scenario Synthesis and Testing for
             Communication-Induced Failures in {V2X} Safety Applications},
   year   = {2026},
 }</code></pre>
-    <p class="is-size-7 has-text-grey">This project was previously released as <i>V2XSynth</i>.</p>
-  </div>
-</section>
+      </div>
+      <p class="muted small">Previously released as <i>V2XSynth</i>.</p>
+    </div>
+  </section>
 
+</main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="./static/LAST-V2X.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-            The page template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-          </p>
-        </div>
-      </div>
-    </div>
+  <div class="wrap">
+    Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+    &middot; <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
   </div>
 </footer>
 
+<!-- Figure lightbox. -->
+<dialog class="lightbox" id="lightbox">
+  <button class="lightbox-close" type="button" aria-label="Close"><i class="fas fa-times"></i></button>
+  <img alt="">
+</dialog>
+
+<script src="./static/js/index.js"></script>
 </body>
 </html>
