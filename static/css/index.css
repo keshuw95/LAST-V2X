@@ -61,9 +61,6 @@ code, pre { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
 .topnav-links { display: flex; gap: 22px; align-items: center; }
 .topnav-links a { color: rgba(255, 255, 255, .82); font-size: .92rem; font-weight: 500; }
 .topnav-links a:hover { color: #fff; text-decoration: none; }
-.topnav-links .nav-pdf {
-  padding: 6px 12px; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px;
-}
 
 /* Hero */
 .hero {
@@ -268,7 +265,7 @@ code, pre { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
 }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
-  .topnav-links a:not(.nav-pdf) { display: none; }
+  .topnav-links { gap: 14px; }
   .hero { padding: 44px 0 96px; }
   .teaser { margin-top: -64px; }
   .teaser-card, .figure-card { padding: 8px; }
