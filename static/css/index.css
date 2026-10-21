@@ -155,3 +155,72 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* LAST-V2X additions */
+.publication-subtitle {
+  font-family: 'Google Sans', sans-serif;
+  color: #363636;
+  line-height: 1.35;
+  margin-top: 0.5rem !important;
+}
+
+.publication-note {
+  color: #777;
+  margin-top: 0.25rem;
+}
+
+.paper-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.teaser .paper-figure {
+  margin-bottom: 1.25rem;
+}
+
+.paper-figure-block {
+  margin: 1rem 0 2.5rem;
+}
+
+.paper-figure-block figcaption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.6rem;
+  text-align: justify;
+}
+
+.stats-strip {
+  background: #f5f7fa;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.stat-value {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2b5797;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+.idea-box {
+  height: 100%;
+  border-top: 4px solid #2b5797;
+}
+
+.ablation-table td, .ablation-table th {
+  font-size: 0.95rem;
+}
+
+.link-block a[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}

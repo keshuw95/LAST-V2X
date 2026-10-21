@@ -1,3 +1,3 @@
-# V2XSynth: An LLM-Orchestrated and Retrieval-Augmented V2X Scenario Generator
+# LAST-V2X: Language-Driven Adaptive Scenario Synthesis and Testing for Communication-Induced Failures in V2X Safety Applications
 
-This is the repository that contains source code for the paper.
+Project page for the paper (previously released as V2XSynth).
