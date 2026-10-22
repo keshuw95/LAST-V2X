@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -30,13 +30,13 @@
 <!-- Top navigation. -->
 <nav class="topnav" aria-label="Sections">
   <div class="wrap topnav-inner">
-    <a class="brand" href="#top"><span class="brand-dot"></span>LAST-V2X</a>
+    <a class="brand" href="#top">LAST-V2X</a>
     <div class="topnav-links">
       <a href="#chain">Idea</a>
       <a href="#how">Method</a>
       <a href="#replay">Replay</a>
       <a href="#results">Results</a>
-      <a href="#bibtex">BibTeX</a>
+      <a href="#bibtex">Citation</a>
     </div>
   </div>
 </nav>
@@ -44,45 +44,34 @@
 <!-- Hero. -->
 <header class="hero" id="top">
   <svg class="hero-bg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect width="1200" height="640" fill="url(#grid)"/>
     <g class="roads">
-      <path id="road-h1" d="M-20 200 H1220"/>
-      <path id="road-h2" d="M-20 470 H1220"/>
-      <path id="road-v1" d="M260 -20 V660"/>
-      <path id="road-v2" d="M940 -20 V660"/>
+      <path id="road-v1" d="M150 -20 V660"/>
+      <path id="road-v2" d="M1050 -20 V660"/>
     </g>
     <g class="rsu">
-      <circle cx="260" cy="200" r="4"/>
-      <circle class="ring" cx="260" cy="200" r="10"/>
-      <circle class="ring r2" cx="260" cy="200" r="10"/>
-      <circle cx="940" cy="470" r="4"/>
-      <circle class="ring" cx="940" cy="470" r="10"/>
-      <circle class="ring r3" cx="940" cy="470" r="10"/>
-      <circle cx="940" cy="200" r="4"/>
-      <circle class="ring r2" cx="940" cy="200" r="10"/>
+      <circle cx="150" cy="210" r="3"/>
+      <circle class="ring" cx="150" cy="210" r="10"/>
+      <circle class="ring r2" cx="150" cy="210" r="10"/>
+      <circle cx="1050" cy="460" r="3"/>
+      <circle class="ring" cx="1050" cy="460" r="10"/>
+      <circle class="ring r3" cx="1050" cy="460" r="10"/>
     </g>
     <g class="packets">
-      <circle r="3" class="pk"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
-      <circle r="3" class="pk"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#road-h2"/></animateMotion></circle>
-      <circle r="3" class="pk bad"><animateMotion dur="11s" begin="-5s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
-      <circle r="3" class="pk"><animateMotion dur="6s" begin="-2s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
-      <circle r="3" class="pk stale"><animateMotion dur="12s" begin="-7s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
-      <circle r="3" class="pk"><animateMotion dur="8s" begin="-4s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
+      <circle r="2.5" class="pk"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
+      <circle r="2.5" class="pk stale"><animateMotion dur="13s" begin="-6s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
+      <circle r="2.5" class="pk"><animateMotion dur="10s" begin="-3s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
+      <circle r="2.5" class="pk bad"><animateMotion dur="14s" begin="-8s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
     </g>
   </svg>
 
   <div class="wrap hero-inner">
-    <p class="eyebrow"><span class="live-dot"></span> V2X safety testing &middot; LLM agents &middot; CARLA</p>
+    <p class="eyebrow">V2X Safety Testing &middot; Large Language Models &middot; CARLA</p>
     <h1 class="hero-title">LAST<span class="dash">-</span>V2X</h1>
     <p class="hero-subtitle">
       <b>L</b>anguage-Driven <b>A</b>daptive <b>S</b>cenario Synthesis and <b>T</b>esting
       for Communication-Induced Failures in V2X Safety Applications
     </p>
+    <span class="hero-rule" aria-hidden="true"></span>
 
     <p class="authors">
       <span><a href="https://keshuw95.github.io/">Keshu Wu</a><sup>1,2</sup></span>
@@ -96,8 +85,8 @@
       <span><sup>1</sup>Texas A&amp;M University</span>
       <span><sup>2</sup>University of Wisconsin-Madison</span>
       <span><sup>3</sup>University of Wyoming</span>
-      <span class="dim"><sup>*</sup>Corresponding author</span>
     </p>
+    <p class="affils dim"><span><sup>*</sup>Corresponding author</span></p>
 
     <div class="buttons">
       <span class="btn btn-ghost" aria-disabled="true" title="Coming soon">
@@ -111,8 +100,8 @@
     <!-- Prompt console. -->
     <div class="console" aria-live="polite">
       <div class="console-bar">
-        <span></span><span></span><span></span>
-        <em>test intent</em>
+        <span>Test intent</span>
+        <span class="console-hint">natural language &rarr; verified specification</span>
       </div>
       <div class="console-body">
         <p class="console-line"><span class="prompt-sign">&rsaquo;</span><span id="typed"></span><span class="caret"></span></p>
@@ -130,32 +119,35 @@
       <figure class="card figure-card teaser-card reveal">
         <img src="./static/images/paper/overview.png" class="zoomable"
              alt="Overview of LAST-V2X: LLM agent analysis, retrieval-augmented scenario grounding, automated V2X scenario synthesis, and scenario refinement with a causal check, parameter search, LLM self-reflection, and a failure catalog.">
+        <figcaption><span class="fig-label">Figure 1.</span> Overview of LAST-V2X: four modules from a natural-language intent to a causally verified failure.</figcaption>
       </figure>
       <p class="tldr reveal">
-        Describe a V2X test in plain language. <span class="accent">LAST-V2X</span> builds it in CARLA,
-        corrupts the messages, and keeps a failure <b>only if the bad information caused it</b>.
+        Describe a V2X test in plain language. LAST-V2X builds it in CARLA,
+        corrupts the messages, and keeps a failure <em>only if the bad information caused it</em>.
       </p>
     </div>
   </section>
 
   <!-- Key numbers. -->
   <section class="stats">
-    <div class="wrap stats-grid">
-      <div class="stat reveal">
-        <span class="stat-value"><span class="count" data-to="100">100</span></span>
-        <span class="stat-label">language-driven scenes<br>8 towns &middot; 6 V2X apps</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-value"><span class="count" data-to="0">0</span></span>
-        <span class="stat-label">spurious failures under<br>healthy communication</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-value">7<i class="fas fa-long-arrow-alt-right"></i><span class="count" data-to="32">32</span></span>
-        <span class="stat-label">verified failures of 50<br>after refinement</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat-value">60<i class="fas fa-long-arrow-alt-right"></i><span class="count" data-to="1">1</span></span>
-        <span class="stat-label">alarms with matched<br>twin rollouts</span>
+    <div class="wrap">
+      <div class="stats-grid reveal">
+        <div class="stat">
+          <span class="stat-value"><span class="count" data-to="100">100</span></span>
+          <span class="stat-label">language-driven scenes<br>8 towns &middot; 6 V2X apps</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value"><span class="count" data-to="0">0</span></span>
+          <span class="stat-label">spurious failures under<br>healthy communication</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">7<span class="arrow">&rarr;</span><span class="count" data-to="32">32</span></span>
+          <span class="stat-label">verified failures of 50<br>after refinement</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">60<span class="arrow">&rarr;</span><span class="count" data-to="1">1</span></span>
+          <span class="stat-label">alarms with matched<br>twin rollouts</span>
+        </div>
       </div>
     </div>
   </section>
@@ -163,7 +155,7 @@
   <!-- Information chain. -->
   <section class="section" id="chain">
     <div class="wrap">
-      <p class="kicker">The idea</p>
+      <p class="kicker"><span>1</span>The idea</p>
       <h2 class="section-title">The car never sees the world. It sees messages.</h2>
       <p class="section-lead">Every V2X decision runs on a belief rebuilt from messages. A failure can come in anywhere along this chain.</p>
 
@@ -188,15 +180,15 @@
 
       <div class="mechanisms">
         <div class="mech mech-stale reveal">
-          <span class="mech-tag">stale-but-detectable</span>
+          <span class="mech-tag">Stale but detectable</span>
           <p>Loss or delay ages the data. The app can notice and fall back safely.</p>
         </div>
         <div class="mech mech-wrong reveal">
-          <span class="mech-tag">fresh-but-wrong</span>
+          <span class="mech-tag">Fresh but wrong</span>
           <p>The message looks current but is wrong. The vehicle trusts it.</p>
         </div>
         <div class="mech mech-silent reveal">
-          <span class="mech-tag">silent-by-absence</span>
+          <span class="mech-tag">Silent by absence</span>
           <p>A conflicting vehicle never transmits, so the app cannot see it.</p>
         </div>
       </div>
@@ -206,28 +198,28 @@
   <!-- Method. -->
   <section class="section section-alt" id="how">
     <div class="wrap">
-      <p class="kicker">Method</p>
+      <p class="kicker"><span>2</span>Method</p>
       <h2 class="section-title">One prompt in, one minimal failure out</h2>
       <p class="section-lead">The LLM interprets the prompt. Fixed rules check feasibility and decide whether a failure counts.</p>
 
       <ol class="steps">
         <li class="step s1 reveal">
-          <span class="step-num">01</span>
+          <span class="step-num">I</span>
           <h3>LLM Agent Analysis</h3>
           <p>Parses the prompt into a typed spec. An Age-of-Information check rejects faults that cannot matter.</p>
         </li>
         <li class="step s2 reveal">
-          <span class="step-num">02</span>
+          <span class="step-num">II</span>
           <h3>Scenario Grounding</h3>
           <p>Retrieves road, V2X and driver knowledge. The planner assigns agents to real lanes.</p>
         </li>
         <li class="step s3 reveal">
-          <span class="step-num">03</span>
+          <span class="step-num">III</span>
           <h3>V2X Synthesis</h3>
           <p>SPaT, MAP and BSM pass through a spatial channel and fault injection, next to a ground-truth twin.</p>
         </li>
         <li class="step s4 reveal">
-          <span class="step-num">04</span>
+          <span class="step-num">IV</span>
           <h3>Refinement</h3>
           <p>Search and LLM self-reflection repair weak tests. Delta debugging reduces each failure to one fault.</p>
         </li>
@@ -235,7 +227,7 @@
 
       <div class="center">
         <button class="link-btn" type="button" data-zoom="./static/images/paper/framework.png">
-          <i class="fas fa-search-plus"></i> View detailed architecture
+          View detailed architecture <span aria-hidden="true">&rarr;</span>
         </button>
       </div>
     </div>
@@ -244,7 +236,7 @@
   <!-- Replay. -->
   <section class="section" id="replay">
     <div class="wrap">
-      <p class="kicker">Paired rollout replay</p>
+      <p class="kicker"><span>3</span>Paired rollout replay</p>
       <h2 class="section-title">Same traffic, two egos, one difference</h2>
       <p class="section-lead">
         The ego acts on received SPaT. Its twin acts on the true signal. A failure counts only if
@@ -327,7 +319,7 @@
   <!-- Vocabulary. -->
   <section class="section section-alt" id="vocab">
     <div class="wrap">
-      <p class="kicker">Test vocabulary</p>
+      <p class="kicker"><span>4</span>Test vocabulary</p>
       <h2 class="section-title">Seven faults, six safety apps</h2>
       <p class="section-lead">Each fault is tied to an event, such as amber onset or the ego reaching its decision point, so it hits exactly when it matters.</p>
 
@@ -348,14 +340,14 @@
 
       <div class="apps">
         <div class="app-group reveal">
-          <span class="app-group-name"><i class="fas fa-traffic-light"></i> Signal apps &middot; I2V</span>
+          <span class="app-group-name">Signal applications &middot; I2V</span>
           <div class="app-list">
             <span class="app"><b>RLVW</b> red-light violation</span>
             <span class="app"><b>GLOSA</b> green-wave speed</span>
           </div>
         </div>
         <div class="app-group reveal">
-          <span class="app-group-name"><i class="fas fa-car-side"></i> Conflict apps &middot; V2V</span>
+          <span class="app-group-name">Conflict applications &middot; V2V</span>
           <div class="app-list">
             <span class="app"><b>IMA</b> crossing traffic</span>
             <span class="app"><b>LTA</b> left turn</span>
@@ -370,7 +362,7 @@
   <!-- Results. -->
   <section class="section" id="results">
     <div class="wrap">
-      <p class="kicker">Results</p>
+      <p class="kicker"><span>5</span>Results</p>
       <h2 class="section-title">What the experiments show</h2>
 
       <div class="tabs" role="tablist">
@@ -391,11 +383,11 @@
         </div>
         <figure class="card figure-card">
           <img src="./static/images/paper/generation.png" class="zoomable" loading="lazy" alt="Scenario generation over 100 scenes.">
-          <figcaption>Coverage, driving quality and message-driven vs. ground-truth gaps over 100 scenes.</figcaption>
+          <figcaption><span class="fig-label">Figure 2.</span> Coverage, driving quality and message-driven vs. ground-truth gaps over 100 scenes.</figcaption>
         </figure>
         <figure class="card figure-card">
           <img src="./static/images/paper/scene_d13.png" class="zoomable" loading="lazy" alt="A nine-agent left turn in Town03 under a healthy channel.">
-          <figcaption>A nine-agent left turn in Town03: prompt, four viewpoints, signal estimates and message deliveries.</figcaption>
+          <figcaption><span class="fig-label">Figure 3.</span> A nine-agent left turn in Town03: prompt, four viewpoints, signal estimates and message deliveries.</figcaption>
         </figure>
       </div>
 
@@ -410,11 +402,11 @@
         </div>
         <figure class="card figure-card">
           <img src="./static/images/paper/refinement_stats.png" class="zoomable" loading="lazy" alt="Scenario refinement on the 50-scene fault suite.">
-          <figcaption>Outcome by fault class, effort to first admission, and safety margin during search.</figcaption>
+          <figcaption><span class="fig-label">Figure 4.</span> Outcome by fault class, effort to first admission, and safety margin during search.</figcaption>
         </figure>
         <figure class="card figure-card">
           <img src="./static/images/paper/refinement_case.png" class="zoomable" loading="lazy" alt="Refinement example rlvw_late_freeze.">
-          <figcaption><code>rlvw_late_freeze</code>: two rounds of reflection move the SPaT freeze in front of the decision point.</figcaption>
+          <figcaption><span class="fig-label">Figure 5.</span> <code>rlvw_late_freeze</code>: two rounds of reflection move the SPaT freeze in front of the decision point.</figcaption>
         </figure>
       </div>
 
@@ -429,7 +421,7 @@
         </div>
         <figure class="card figure-card">
           <img src="./static/images/paper/corridor.png" class="zoomable" loading="lazy" alt="Corridor traversal along an RSU chain.">
-          <figcaption>One prompt, three information clauses: no V2X, direct SPaT and an RSU relay chain.</figcaption>
+          <figcaption><span class="fig-label">Figure 6.</span> One prompt, three information clauses: no V2X, direct SPaT and an RSU relay chain.</figcaption>
         </figure>
       </div>
 
@@ -443,15 +435,16 @@
         </div>
         <figure class="card figure-card">
           <img src="./static/images/paper/multicv.png" class="zoomable" loading="lazy" alt="Multi-CV cooperation: EEBL relay chain and IMA mutual yield.">
-          <figcaption>EEBL V2V relay chain (a&ndash;d) and IMA mutual yield (e&ndash;h), 10 seeds per condition.</figcaption>
+          <figcaption><span class="fig-label">Figure 7.</span> EEBL V2V relay chain (a&ndash;d) and IMA mutual yield (e&ndash;h), 10 seeds per condition.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- BibTeX. -->
+  <!-- Citation. -->
   <section class="section section-alt" id="bibtex">
     <div class="wrap">
+      <p class="kicker"><span>6</span>Citation</p>
       <h2 class="section-title">BibTeX</h2>
       <div class="bibtex">
         <button class="copy-btn" type="button" data-copy="#bibtex-code"><i class="fas fa-copy"></i> <span>Copy</span></button>
@@ -469,9 +462,10 @@
 </main>
 
 <footer class="footer">
-  <div class="wrap">
-    Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
-    &middot; <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+  <div class="wrap footer-inner">
+    <span>&copy; 2026 The LAST-V2X authors</span>
+    <span>Template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+      &middot; <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span>
   </div>
 </footer>
 
