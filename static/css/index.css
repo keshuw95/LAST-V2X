@@ -77,7 +77,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.06em; }
   background:
     radial-gradient(1000px 520px at 50% 0%, rgba(42, 111, 120, .22), transparent 70%),
     var(--night);
-  padding: 72px 0 150px;
+  padding: 44px 0 128px;
 }
 .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .roads path { stroke: rgba(255, 255, 255, .035); stroke-width: 22; fill: none; }
@@ -92,42 +92,41 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.06em; }
 
 .hero-inner { position: relative; z-index: 1; }
 .eyebrow {
-  margin: 0 0 20px; font-size: .74rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  margin: 0 0 14px; font-size: .72rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
   color: rgba(255, 255, 255, .55);
 }
 .hero-title {
   font-family: var(--serif); font-weight: 500; letter-spacing: -.015em;
-  font-size: clamp(3.2rem, 9vw, 5.6rem); line-height: 1; color: #fff;
+  font-size: clamp(3rem, 8vw, 4.8rem); line-height: 1; color: #fff;
 }
 .hero-title .dash { color: var(--sig-amber); }
 .hero-subtitle {
-  max-width: 720px; margin: 18px auto 0;
-  font-family: var(--serif); font-size: clamp(1.15rem, 2.4vw, 1.45rem); line-height: 1.4;
+  max-width: 720px; margin: 12px auto 0;
+  font-family: var(--serif); font-size: clamp(1.1rem, 2.3vw, 1.38rem); line-height: 1.4;
   color: rgba(255, 255, 255, .82);
 }
 .hero-subtitle b { color: #fff; font-weight: 600; }
-.hero-rule { display: block; width: 56px; height: 1px; margin: 28px auto 24px; background: rgba(255, 255, 255, .25); }
-.authors { margin: 0 0 8px; font-size: 1.02rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
+.hero-rule { display: block; width: 56px; height: 1px; margin: 18px auto 16px; background: rgba(255, 255, 255, .25); }
+.authors { margin: 0 0 4px; font-size: 1.02rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
 .authors a { color: #fff; border-bottom: 1px solid rgba(255, 255, 255, .25); }
 .authors a:hover { text-decoration: none; border-bottom-color: rgba(255, 255, 255, .8); }
 .authors sup { color: rgba(255, 255, 255, .6); margin-left: 1px; }
 .affils { margin: 0; font-size: .88rem; color: rgba(255, 255, 255, .62); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 20px; }
-.affils.dim { margin-top: 2px; font-size: .8rem; color: rgba(255, 255, 255, .42); }
 
-.buttons { margin-top: 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 999px; font-size: .88rem; font-weight: 500; }
+.buttons { margin-top: 18px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; font-size: .88rem; font-weight: 500; }
 .btn-ghost { color: rgba(255, 255, 255, .58); border: 1px solid rgba(255, 255, 255, .18); cursor: default; }
 .btn small { font-size: .64rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255, 255, 255, .45); }
 
 /* Prompt editor */
 .editor {
-  max-width: 720px; margin: 42px auto 0; text-align: left; overflow: hidden;
+  max-width: 720px; margin: 28px auto 0; text-align: left; overflow: hidden;
   background: #0a121e; border: 1px solid rgba(255, 255, 255, .1); border-radius: 12px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .04);
   font-family: var(--mono);
 }
 .editor-bar {
-  display: flex; align-items: stretch; gap: 2px; height: 38px; padding: 0 12px 0 14px;
+  display: flex; align-items: stretch; gap: 2px; height: 34px; padding: 0 12px 0 14px;
   background: #0e1826; border-bottom: 1px solid rgba(255, 255, 255, .07);
 }
 .dots { display: inline-flex; align-items: center; gap: 7px; margin-right: 14px; }
@@ -142,15 +141,15 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.06em; }
 .etab.is-on { color: rgba(255, 255, 255, .88); border-bottom-color: rgba(140, 200, 205, .9); background: rgba(255, 255, 255, .025); }
 .editor-hint { margin-left: auto; align-self: center; font-family: var(--sans); font-size: .7rem; letter-spacing: .04em; color: rgba(255, 255, 255, .32); }
 
-.code { list-style: none; margin: 0; padding: 12px 0; counter-reset: ln; font-size: .82rem; line-height: 1.75; color: #dfe5ee; }
+.code { list-style: none; margin: 0; padding: 8px 0; counter-reset: ln; font-size: .82rem; line-height: 1.75; color: #dfe5ee; }
 .code li { position: relative; counter-increment: ln; padding: 0 18px 0 52px; white-space: pre-wrap; word-break: break-word; }
 .code li::before {
   content: counter(ln); position: absolute; left: 0; width: 36px; text-align: right;
   color: rgba(255, 255, 255, .22); font-size: .76rem;
 }
-.code-in { min-height: calc(2 * 1.75em + 26px); padding-top: 14px; }
+.code-in { min-height: calc(2 * 1.75em + 20px); padding-top: 12px; }
 .code-in li { color: #eef2f7; }
-.code-out { min-height: calc(6 * 1.75em + 24px); background: rgba(255, 255, 255, .012); }
+.code-out { min-height: calc(6 * 1.75em + 16px); background: rgba(255, 255, 255, .012); }
 .code-out li { opacity: 0; transform: translateX(-4px); animation: lineIn .35s ease forwards; }
 @keyframes lineIn { to { opacity: 1; transform: none; } }
 .pane-sep {
@@ -180,7 +179,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.06em; }
 .zoomable { cursor: zoom-in; }
 
 /* Teaser */
-.teaser { margin-top: -92px; position: relative; z-index: 2; }
+.teaser { margin-top: -84px; position: relative; z-index: 2; }
 .teaser-card { padding: 24px 24px 16px; }
 .tldr {
   max-width: 720px; margin: 36px auto 0; text-align: center;
@@ -420,7 +419,7 @@ em { font-family: var(--serif); font-style: italic; font-size: 1.06em; }
   .topnav-links { gap: 14px; }
   .topnav-links a { font-size: .8rem; }
   .topnav-links a[href="#chain"], .topnav-links a[href="#bibtex"] { display: none; }
-  .hero { padding: 48px 0 120px; }
+  .hero { padding: 32px 0 108px; }
   .editor-hint { display: none; }
   .code { font-size: .74rem; }
   .code li { padding-left: 40px; padding-right: 12px; }
