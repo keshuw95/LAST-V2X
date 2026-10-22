@@ -45,22 +45,25 @@
 <header class="hero" id="top">
   <svg class="hero-bg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g class="roads">
-      <path id="road-v1" d="M150 -20 V660"/>
-      <path id="road-v2" d="M1050 -20 V660"/>
+      <path id="road-h1" d="M-20 200 H1220"/>
+      <path id="road-h2" d="M-20 470 H1220"/>
+      <path id="road-v1" d="M200 -20 V660"/>
+      <path id="road-v2" d="M1000 -20 V660"/>
     </g>
     <g class="rsu">
-      <circle cx="150" cy="210" r="3"/>
-      <circle class="ring" cx="150" cy="210" r="10"/>
-      <circle class="ring r2" cx="150" cy="210" r="10"/>
-      <circle cx="1050" cy="460" r="3"/>
-      <circle class="ring" cx="1050" cy="460" r="10"/>
-      <circle class="ring r3" cx="1050" cy="460" r="10"/>
+      <circle cx="200" cy="200" r="3"/>
+      <circle class="ring" cx="200" cy="200" r="10"/>
+      <circle class="ring r2" cx="200" cy="200" r="10"/>
+      <circle cx="1000" cy="470" r="3"/>
+      <circle class="ring" cx="1000" cy="470" r="10"/>
+      <circle class="ring r3" cx="1000" cy="470" r="10"/>
     </g>
     <g class="packets">
-      <circle r="2.5" class="pk"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
-      <circle r="2.5" class="pk stale"><animateMotion dur="13s" begin="-6s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
-      <circle r="2.5" class="pk"><animateMotion dur="10s" begin="-3s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
-      <circle r="2.5" class="pk bad"><animateMotion dur="14s" begin="-8s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
+      <circle r="2.5" class="pk"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
+      <circle r="2.5" class="pk"><animateMotion dur="11s" begin="-4s" repeatCount="indefinite"><mpath href="#road-h2"/></animateMotion></circle>
+      <circle r="2.5" class="pk bad"><animateMotion dur="13s" begin="-6s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
+      <circle r="2.5" class="pk"><animateMotion dur="8s" begin="-2s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
+      <circle r="2.5" class="pk stale"><animateMotion dur="14s" begin="-7s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
     </g>
   </svg>
 
