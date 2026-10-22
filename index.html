@@ -100,16 +100,17 @@
       </span>
     </div>
 
-    <!-- Prompt console. -->
-    <div class="console" aria-live="polite">
-      <div class="console-bar">
-        <span>Test intent</span>
-        <span class="console-hint">natural language &rarr; verified specification</span>
+    <!-- Prompt editor: natural-language intent -> compiled specification. -->
+    <div class="editor" aria-live="polite">
+      <div class="editor-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="etab is-on" id="tab-in">intent.txt</span>
+        <span class="etab" id="tab-out">spec.json</span>
+        <span class="editor-hint">LLM parser &middot; AoI verifier</span>
       </div>
-      <div class="console-body">
-        <p class="console-line"><span class="prompt-sign">&rsaquo;</span><span id="typed"></span><span class="caret"></span></p>
-        <div class="console-out" id="compiled"></div>
-      </div>
+      <ol class="code code-in"><li><span id="typed"></span><span class="caret"></span></li></ol>
+      <div class="pane-sep"><span>compiled specification</span></div>
+      <ol class="code code-out" id="compiled"></ol>
     </div>
   </div>
 </header>

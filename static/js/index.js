@@ -46,36 +46,67 @@ function countUp(el) {
   requestAnimationFrame(step);
 }
 
-// Hero console: type real prompts from the paper, then show what they compile to.
+// Hero editor: type real prompts from the paper, then show the specification they compile to.
+// Each row is [key, value, comment]; values are pre-highlighted HTML.
+var S = function (v) { return '<span class="j-s">"' + v + '"</span>'; };
+var N = function (v) { return '<span class="j-n">' + v + '</span>'; };
+var P = function (v) { return '<span class="j-p">' + v + '</span>'; };
+var K = function (v) { return '<span class="j-k">"' + v + '"</span>'; };
 var PROMPTS = [
   {
     text: 'An ego car nears a signal on amber while SPaT messages freeze.',
-    out: [['app', 'RLVW'], ['fault', 'freeze · SPaT', 'fault'], ['anchor', 'amber_onset'], ['verifier', 'feasible ✓', 'ok']]
+    rows: [
+      ['app', S('RLVW')],
+      ['fault', P('{') + K('op') + P(': ') + S('freeze') + P(', ') + K('stream') + P(': ') + S('SPaT') + P('}')],
+      ['anchor', S('amber_onset')],
+      ['verifier', S('pass'), '<span class="j-ok">// feasible ✓</span>']
+    ]
   },
   {
     text: 'A clear sunset rush hour at a large multi-lane signalized intersection in a hilly downtown. The ego turns left across a dense oncoming stream.',
-    out: [['app', 'LTA (inferred)'], ['town', 'Town03'], ['agents', '9'], ['channel', 'healthy', 'ok']]
+    rows: [
+      ['app', S('LTA'), '<span class="j-c">// inferred from the conflict</span>'],
+      ['town', S('Town03')],
+      ['agents', N('9')],
+      ['channel', S('healthy'), '<span class="j-c">// no faults</span>']
+    ]
   },
   {
     text: 'The SPaT feed freezes and stays stuck at red 5 seconds before the ego reaches the stop bar.',
-    out: [['fault', 'freeze · phase+countdown', 'fault'], ['anchor', 'ego_at_decision_point'], ['offset', '−5 s'], ['window', 'open-ended']]
+    rows: [
+      ['fault', P('{') + K('op') + P(': ') + S('freeze') + P(', ') + K('fields') + P(': [') + S('phase') + P(', ') + S('countdown') + P(']}')],
+      ['anchor', S('ego_at_decision_point')],
+      ['offset_s', N('-5')],
+      ['window', S('open-ended')]
+    ]
   }
 ];
 
 function setupConsole() {
   var typed = document.getElementById('typed');
   var out = document.getElementById('compiled');
+  var tabIn = document.getElementById('tab-in'), tabOut = document.getElementById('tab-out');
   if (!typed) return;
 
+  function focusTab(onOut) {
+    tabIn.classList.toggle('is-on', !onOut);
+    tabOut.classList.toggle('is-on', onOut);
+  }
+
   function renderOut(p) {
-    out.innerHTML = '<span class="arrow">compiles to →</span>';
-    p.out.forEach(function (c, i) {
-      var chip = document.createElement('span');
-      chip.className = 'chip' + (c[2] ? ' ' + c[2] : '');
-      chip.style.animationDelay = (i * 0.18) + 's';
-      chip.innerHTML = c[0] + ' <b>' + c[1] + '</b>';
-      out.appendChild(chip);
+    var lines = [P('{')];
+    p.rows.forEach(function (r, i) {
+      lines.push('  ' + K(r[0]) + P(': ') + r[1] + (i < p.rows.length - 1 ? P(',') : '') + (r[2] ? '  ' + r[2] : ''));
     });
+    lines.push(P('}'));
+    out.innerHTML = '';
+    lines.forEach(function (html, i) {
+      var li = document.createElement('li');
+      li.innerHTML = html;
+      li.style.animationDelay = (i * 0.09) + 's';
+      out.appendChild(li);
+    });
+    focusTab(true);
   }
 
   if (REDUCED) {
@@ -90,13 +121,14 @@ function setupConsole() {
     var i = 0;
     out.innerHTML = '';
     typed.textContent = '';
+    focusTab(false);
     (function type() {
       if (i <= p.text.length) {
         typed.textContent = p.text.slice(0, i++);
         setTimeout(type, 22 + Math.random() * 30);
       } else {
-        setTimeout(function () { renderOut(p); }, 250);
-        setTimeout(function () { idx = (idx + 1) % PROMPTS.length; run(); }, 5200);
+        setTimeout(function () { renderOut(p); }, 300);
+        setTimeout(function () { idx = (idx + 1) % PROMPTS.length; run(); }, 5600);
       }
     })();
   }
