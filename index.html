@@ -11,12 +11,12 @@
   <meta property="og:description" content="Language-driven adaptive scenario synthesis and testing for communication-induced failures in V2X safety applications.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://keshuw95.github.io/LAST-V2X/">
-  <meta property="og:image" content="https://keshuw95.github.io/LAST-V2X/static/images/paper/framework.png">
+  <meta property="og:image" content="https://keshuw95.github.io/LAST-V2X/static/images/paper/overview.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -30,9 +30,11 @@
 <!-- Top navigation. -->
 <nav class="topnav" aria-label="Sections">
   <div class="wrap topnav-inner">
-    <a class="brand" href="#top"><i class="fas fa-broadcast-tower"></i> LAST-V2X</a>
+    <a class="brand" href="#top"><span class="brand-dot"></span>LAST-V2X</a>
     <div class="topnav-links">
-      <a href="#method">Method</a>
+      <a href="#chain">Idea</a>
+      <a href="#how">Method</a>
+      <a href="#replay">Replay</a>
       <a href="#results">Results</a>
       <a href="#bibtex">BibTeX</a>
     </div>
@@ -41,16 +43,49 @@
 
 <!-- Hero. -->
 <header class="hero" id="top">
+  <svg class="hero-bg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,.035)" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="640" fill="url(#grid)"/>
+    <g class="roads">
+      <path id="road-h1" d="M-20 200 H1220"/>
+      <path id="road-h2" d="M-20 470 H1220"/>
+      <path id="road-v1" d="M260 -20 V660"/>
+      <path id="road-v2" d="M940 -20 V660"/>
+    </g>
+    <g class="rsu">
+      <circle cx="260" cy="200" r="4"/>
+      <circle class="ring" cx="260" cy="200" r="10"/>
+      <circle class="ring r2" cx="260" cy="200" r="10"/>
+      <circle cx="940" cy="470" r="4"/>
+      <circle class="ring" cx="940" cy="470" r="10"/>
+      <circle class="ring r3" cx="940" cy="470" r="10"/>
+      <circle cx="940" cy="200" r="4"/>
+      <circle class="ring r2" cx="940" cy="200" r="10"/>
+    </g>
+    <g class="packets">
+      <circle r="3" class="pk"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
+      <circle r="3" class="pk"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#road-h2"/></animateMotion></circle>
+      <circle r="3" class="pk bad"><animateMotion dur="11s" begin="-5s" repeatCount="indefinite"><mpath href="#road-h1"/></animateMotion></circle>
+      <circle r="3" class="pk"><animateMotion dur="6s" begin="-2s" repeatCount="indefinite"><mpath href="#road-v1"/></animateMotion></circle>
+      <circle r="3" class="pk stale"><animateMotion dur="12s" begin="-7s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
+      <circle r="3" class="pk"><animateMotion dur="8s" begin="-4s" repeatCount="indefinite"><mpath href="#road-v2"/></animateMotion></circle>
+    </g>
+  </svg>
+
   <div class="wrap hero-inner">
-    <p class="eyebrow">V2X safety testing &middot; LLM agents &middot; CARLA</p>
-    <h1 class="hero-title">LAST-V2X</h1>
+    <p class="eyebrow"><span class="live-dot"></span> V2X safety testing &middot; LLM agents &middot; CARLA</p>
+    <h1 class="hero-title">LAST<span class="dash">-</span>V2X</h1>
     <p class="hero-subtitle">
       <b>L</b>anguage-Driven <b>A</b>daptive <b>S</b>cenario Synthesis and <b>T</b>esting
       for Communication-Induced Failures in V2X Safety Applications
     </p>
 
     <p class="authors">
-      <span><a href="https://keshuw95.github.io/">Keshu Wu</a><sup>1</sup></span>
+      <span><a href="https://keshuw95.github.io/">Keshu Wu</a><sup>1,2</sup></span>
       <span>Hao Zhang<sup>1</sup></span>
       <span>Rui Gan<sup>2</sup></span>
       <span>Pei Li<sup>3</sup></span>
@@ -61,32 +96,44 @@
       <span><sup>1</sup>Texas A&amp;M University</span>
       <span><sup>2</sup>University of Wisconsin-Madison</span>
       <span><sup>3</sup>University of Wyoming</span>
-      <span class="muted"><sup>*</sup>Corresponding author</span>
+      <span class="dim"><sup>*</sup>Corresponding author</span>
     </p>
 
     <div class="buttons">
-      <span class="btn btn-disabled" aria-disabled="true" title="Coming soon">
+      <span class="btn btn-ghost" aria-disabled="true" title="Coming soon">
         <i class="ai ai-arxiv"></i> arXiv <small>soon</small>
       </span>
-      <span class="btn btn-disabled" aria-disabled="true" title="Coming soon">
+      <span class="btn btn-ghost" aria-disabled="true" title="Coming soon">
         <i class="fab fa-github"></i> Code <small>soon</small>
       </span>
+    </div>
+
+    <!-- Prompt console. -->
+    <div class="console" aria-live="polite">
+      <div class="console-bar">
+        <span></span><span></span><span></span>
+        <em>test intent</em>
+      </div>
+      <div class="console-body">
+        <p class="console-line"><span class="prompt-sign">&rsaquo;</span><span id="typed"></span><span class="caret"></span></p>
+        <div class="console-out" id="compiled"></div>
+      </div>
     </div>
   </div>
 </header>
 
 <main>
 
-  <!-- Teaser. -->
+  <!-- Overview. -->
   <section class="teaser">
     <div class="wrap">
-      <figure class="card figure-card teaser-card">
-        <img src="./static/images/paper/framework.png" class="zoomable"
-             alt="LAST-V2X framework: LLM agent analysis, retrieval-augmented scenario grounding, automated V2X scenario synthesis, and scenario refinement.">
+      <figure class="card figure-card teaser-card reveal">
+        <img src="./static/images/paper/overview.png" class="zoomable"
+             alt="Overview of LAST-V2X: LLM agent analysis, retrieval-augmented scenario grounding, automated V2X scenario synthesis, and scenario refinement with LLM self-reflection and a causal check.">
       </figure>
-      <p class="tldr">
-        Write a V2X test in plain language. <span class="accent">LAST-V2X</span> builds it in CARLA,
-        injects message faults, and keeps a failure <b>only if degraded V2X information caused it</b>.
+      <p class="tldr reveal">
+        Describe a V2X test in plain language. <span class="accent">LAST-V2X</span> builds it in CARLA,
+        corrupts the messages, and keeps a failure <b>only if the bad information caused it</b>.
       </p>
     </div>
   </section>
@@ -94,105 +141,237 @@
   <!-- Key numbers. -->
   <section class="stats">
     <div class="wrap stats-grid">
-      <div class="stat">
-        <span class="stat-value">100</span>
+      <div class="stat reveal">
+        <span class="stat-value"><span class="count" data-to="100">100</span></span>
         <span class="stat-label">language-driven scenes<br>8 towns &middot; 6 V2X apps</span>
       </div>
-      <div class="stat">
-        <span class="stat-value">0</span>
+      <div class="stat reveal">
+        <span class="stat-value"><span class="count" data-to="0">0</span></span>
         <span class="stat-label">spurious failures under<br>healthy communication</span>
       </div>
-      <div class="stat">
-        <span class="stat-value">7<i class="fas fa-long-arrow-alt-right"></i>32</span>
+      <div class="stat reveal">
+        <span class="stat-value">7<i class="fas fa-long-arrow-alt-right"></i><span class="count" data-to="32">32</span></span>
         <span class="stat-label">verified failures of 50<br>after refinement</span>
       </div>
-      <div class="stat">
-        <span class="stat-value">60<i class="fas fa-long-arrow-alt-right"></i>1</span>
+      <div class="stat reveal">
+        <span class="stat-value">60<i class="fas fa-long-arrow-alt-right"></i><span class="count" data-to="1">1</span></span>
         <span class="stat-label">alarms with matched<br>twin rollouts</span>
       </div>
     </div>
   </section>
 
-  <!-- Method. -->
-  <section class="section" id="method">
+  <!-- Information chain. -->
+  <section class="section" id="chain">
     <div class="wrap">
-      <h2 class="section-title">How it works</h2>
-      <p class="section-lead">Four modules turn one prompt into a verified, minimal failure case.</p>
+      <p class="kicker">The idea</p>
+      <h2 class="section-title">The car never sees the world. It sees messages.</h2>
+      <p class="section-lead">Every V2X decision runs on a belief rebuilt from messages. A failure can come in anywhere along this chain.</p>
 
-      <div class="modules">
-        <div class="module m1">
-          <span class="module-num">1</span>
-          <i class="fas fa-comment-dots module-icon"></i>
-          <h3>LLM Agent Analysis</h3>
-          <p>Compiles the prompt into a typed spec; an Age-of-Information check rejects faults that cannot matter.</p>
+      <div class="chain reveal" aria-label="Information chain from world to decision">
+        <div class="chain-track">
+          <span class="pkt ok"></span>
+          <span class="pkt ok d2"></span>
+          <span class="pkt stale"></span>
+          <span class="pkt wrong"></span>
+          <span class="pkt lost"></span>
+          <span class="pkt ok d3"></span>
         </div>
-        <div class="module m2">
-          <span class="module-num">2</span>
-          <i class="fas fa-map-marked-alt module-icon"></i>
-          <h3>Scenario Grounding</h3>
-          <p>Retrieves roadway, V2X and driver knowledge to place the test on a feasible junction.</p>
-        </div>
-        <div class="module m3">
-          <span class="module-num">3</span>
-          <i class="fas fa-satellite-dish module-icon"></i>
-          <h3>V2X Scenario Synthesis</h3>
-          <p>Runs SPaT, MAP and BSM over a spatial channel with delay, loss, skew and wrong content.</p>
-        </div>
-        <div class="module m4">
-          <span class="module-num">4</span>
-          <i class="fas fa-redo-alt module-icon"></i>
-          <h3>Scenario Refinement</h3>
-          <p>Search and LLM self-reflection repair ineffective tests; delta debugging minimizes the rest.</p>
+        <div class="chain-nodes">
+          <div class="cnode"><span class="cic"><i class="fas fa-globe-americas"></i></span><b>World</b><code>W</code></div>
+          <div class="cnode"><span class="cic"><i class="fas fa-broadcast-tower"></i></span><b>Sample</b><code>&Sigma;</code></div>
+          <div class="cnode"><span class="cic"><i class="fas fa-wifi"></i></span><b>Channel</b><code>&Gamma;</code></div>
+          <div class="cnode cnode-fault"><span class="cic"><i class="fas fa-bolt"></i></span><b>Faults</b><code>&Phi;<sub>F</sub></code></div>
+          <div class="cnode"><span class="cic"><i class="fas fa-brain"></i></span><b>Belief</b><code>&beta;</code></div>
+          <div class="cnode"><span class="cic"><i class="fas fa-car"></i></span><b>Decision</b><code>&pi;<sub>a</sub></code></div>
         </div>
       </div>
 
-      <!-- Causal admission. -->
-      <div class="card admission">
-        <p class="admission-title"><i class="fas fa-balance-scale"></i> Causal admission rule</p>
-        <div class="admission-row">
-          <div class="ego ego-bad">
-            <i class="fas fa-car"></i>
-            <span>message-driven ego</span>
-            <b><i class="fas fa-times-circle"></i> fails</b>
-          </div>
-          <span class="op">&and;</span>
-          <div class="ego ego-good">
-            <i class="fas fa-car"></i>
-            <span>ground-truth twin</span>
-            <b><i class="fas fa-check-circle"></i> safe</b>
-          </div>
-          <span class="op">&rArr;</span>
-          <div class="verdict">communication-induced<br>failure</div>
-        </div>
-        <p class="admission-note">Same traffic, same seed; only the V2X information differs.</p>
-      </div>
-
-      <!-- Failure mechanisms. -->
-      <h3 class="sub-title">Three ways V2X information fails</h3>
       <div class="mechanisms">
-        <div class="mech">
-          <i class="fas fa-hourglass-half"></i>
-          <h4>Stale-but-detectable</h4>
-          <p>Loss or delay ages the data; the app can notice and fall back.</p>
+        <div class="mech mech-stale reveal">
+          <span class="mech-tag">stale-but-detectable</span>
+          <p>Loss or delay ages the data. The app can notice and fall back safely.</p>
         </div>
-        <div class="mech">
-          <i class="fas fa-exclamation-triangle"></i>
-          <h4>Fresh-but-wrong</h4>
-          <p>Messages look current but lie, so the vehicle trusts a wrong state.</p>
+        <div class="mech mech-wrong reveal">
+          <span class="mech-tag">fresh-but-wrong</span>
+          <p>The message looks current but is wrong. The vehicle trusts it.</p>
         </div>
-        <div class="mech">
-          <i class="fas fa-eye-slash"></i>
-          <h4>Silent-by-absence</h4>
-          <p>A conflicting vehicle never transmits, so it is invisible to the app.</p>
+        <div class="mech mech-silent reveal">
+          <span class="mech-tag">silent-by-absence</span>
+          <p>A conflicting vehicle never transmits, so the app cannot see it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method. -->
+  <section class="section section-alt" id="how">
+    <div class="wrap">
+      <p class="kicker">Method</p>
+      <h2 class="section-title">One prompt in, one minimal failure out</h2>
+      <p class="section-lead">The LLM interprets the prompt. Fixed rules check feasibility and decide whether a failure counts.</p>
+
+      <ol class="steps">
+        <li class="step s1 reveal">
+          <span class="step-num">01</span>
+          <h3>LLM Agent Analysis</h3>
+          <p>Parses the prompt into a typed spec. An Age-of-Information check rejects faults that cannot matter.</p>
+        </li>
+        <li class="step s2 reveal">
+          <span class="step-num">02</span>
+          <h3>Scenario Grounding</h3>
+          <p>Retrieves road, V2X and driver knowledge. The planner assigns agents to real lanes.</p>
+        </li>
+        <li class="step s3 reveal">
+          <span class="step-num">03</span>
+          <h3>V2X Synthesis</h3>
+          <p>SPaT, MAP and BSM pass through a spatial channel and fault injection, next to a ground-truth twin.</p>
+        </li>
+        <li class="step s4 reveal">
+          <span class="step-num">04</span>
+          <h3>Refinement</h3>
+          <p>Search and LLM self-reflection repair weak tests. Delta debugging reduces each failure to one fault.</p>
+        </li>
+      </ol>
+
+      <div class="center">
+        <button class="link-btn" type="button" data-zoom="./static/images/paper/framework.png">
+          <i class="fas fa-search-plus"></i> View detailed architecture
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Replay. -->
+  <section class="section" id="replay">
+    <div class="wrap">
+      <p class="kicker">Paired rollout replay</p>
+      <h2 class="section-title">Same traffic, two egos, one difference</h2>
+      <p class="section-lead">
+        The ego acts on received SPaT. Its twin acts on the true signal. A failure counts only if
+        <span class="rule">ego fails &and; twin safe</span>.
+      </p>
+
+      <div class="replay card reveal">
+        <div class="replay-head">
+          <div class="seg" role="tablist" aria-label="Scenario version">
+            <button type="button" class="seg-btn" data-case="orig" role="tab" aria-selected="false">Original prompt</button>
+            <button type="button" class="seg-btn is-active" data-case="rev" role="tab" aria-selected="true">After self-reflection</button>
+          </div>
+          <span class="verdict-chip" id="verdict">&nbsp;</span>
+        </div>
+
+        <blockquote class="replay-prompt" id="replay-prompt"></blockquote>
+
+        <svg class="road-svg" viewBox="0 0 800 230" role="img" aria-label="Animated replay of the ego and its ground-truth twin approaching a signalized stop bar">
+          <text x="10" y="20" class="lane-label">EGO &middot; acts on received SPaT</text>
+          <!-- True signal head. -->
+          <g transform="translate(560 0)">
+            <rect x="0" y="0" width="56" height="20" rx="10" class="sig-housing"/>
+            <circle cx="12" cy="10" r="6" class="lamp" id="lamp-r"/>
+            <circle cx="28" cy="10" r="6" class="lamp" id="lamp-y"/>
+            <circle cx="44" cy="10" r="6" class="lamp" id="lamp-g"/>
+            <text x="64" y="14" class="sig-label">true signal</text>
+          </g>
+          <rect x="0" y="60" width="800" height="130" rx="10" class="asphalt"/>
+          <line x1="0" y1="125" x2="470" y2="125" class="lane-mark"/>
+          <rect x="470" y="60" width="9" height="130" class="stopbar"/>
+          <g class="crosswalk">
+            <rect x="490" y="66" width="22" height="8"/><rect x="490" y="82" width="22" height="8"/>
+            <rect x="490" y="98" width="22" height="8"/><rect x="490" y="114" width="22" height="8"/>
+            <rect x="490" y="130" width="22" height="8"/><rect x="490" y="146" width="22" height="8"/>
+            <rect x="490" y="162" width="22" height="8"/><rect x="490" y="178" width="22" height="8"/>
+          </g>
+          <text x="10" y="214" class="lane-label">TWIN &middot; acts on true signal (no physical presence)</text>
+          <text x="475" y="214" class="bar-label" text-anchor="middle">stop bar</text>
+
+          <!-- Twin. -->
+          <g id="twin">
+            <rect x="-26" y="146" width="52" height="26" rx="7" class="car car-twin"/>
+          </g>
+          <!-- Ego. -->
+          <g id="ego">
+            <g class="bubble">
+              <rect x="-44" y="34" width="88" height="20" rx="10"/>
+              <circle cx="-31" cy="44" r="5" id="recv-lamp"/>
+              <text x="-21" y="48">received</text>
+            </g>
+            <rect x="-26" y="78" width="52" height="26" rx="7" class="car car-ego"/>
+            <rect x="8" y="82" width="12" height="18" rx="3" class="windshield"/>
+          </g>
+          <g id="flash" class="flash" opacity="0">
+            <rect x="560" y="111" width="200" height="28" rx="14"/>
+            <text x="660" y="130" text-anchor="middle">Ego enters on red</text>
+          </g>
+        </svg>
+
+        <div class="timelines">
+          <div class="tl-row"><span class="tl-name">Signal</span><div class="tl-bar" id="tl-true"></div></div>
+          <div class="tl-row"><span class="tl-name">Received</span><div class="tl-bar" id="tl-recv"></div></div>
+          <div class="tl-head" id="playhead"></div>
+        </div>
+
+        <div class="replay-controls">
+          <button type="button" class="play-btn" id="play" aria-label="Play or pause"><i class="fas fa-pause"></i></button>
+          <input type="range" id="scrub" min="0" max="18" step="0.05" value="0" aria-label="Time">
+          <div class="readout">
+            <span>t <b id="r-t">0.0</b> s</span>
+            <span class="r-ego">ego <b id="r-ego">&ndash;</b> m</span>
+            <span class="r-twin">twin <b id="r-twin">&ndash;</b> m</span>
+          </div>
+        </div>
+        <p class="replay-note">Trajectories follow the paper's <code>rlvw_late_freeze</code> case in CARLA. Distance is measured from the stop bar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vocabulary. -->
+  <section class="section section-alt" id="vocab">
+    <div class="wrap">
+      <p class="kicker">Test vocabulary</p>
+      <h2 class="section-title">Seven faults, six safety apps</h2>
+      <p class="section-lead">Each fault is tied to an event, such as amber onset or the ego reaching its decision point, so it hits exactly when it matters.</p>
+
+      <div class="elements">
+        <div class="el fam-delivery reveal"><span class="el-sym">Dr</span><b>drop</b><small>skip k broadcasts</small></div>
+        <div class="el fam-delivery reveal"><span class="el-sym">Bd</span><b>burst_drop</b><small>bursty loss</small></div>
+        <div class="el fam-delivery reveal"><span class="el-sym">Dl</span><b>delay</b><small>late delivery</small></div>
+        <div class="el fam-time reveal"><span class="el-sym">Sk</span><b>skew</b><small>wrong timestamp</small></div>
+        <div class="el fam-content reveal"><span class="el-sym">Fz</span><b>freeze</b><small>stuck phase or track</small></div>
+        <div class="el fam-content reveal"><span class="el-sym">Rb</span><b>rebind</b><small>wrong signal group</small></div>
+        <div class="el fam-content reveal"><span class="el-sym">Pp</span><b>pos_perturb</b><small>shifted BSM position</small></div>
+      </div>
+      <div class="legend">
+        <span><i class="sw fam-delivery"></i>Delivery</span>
+        <span><i class="sw fam-time"></i>Timestamp</span>
+        <span><i class="sw fam-content"></i>Semantic content</span>
+      </div>
+
+      <div class="apps">
+        <div class="app-group reveal">
+          <span class="app-group-name"><i class="fas fa-traffic-light"></i> Signal apps &middot; I2V</span>
+          <div class="app-list">
+            <span class="app"><b>RLVW</b> red-light violation</span>
+            <span class="app"><b>GLOSA</b> green-wave speed</span>
+          </div>
+        </div>
+        <div class="app-group reveal">
+          <span class="app-group-name"><i class="fas fa-car-side"></i> Conflict apps &middot; V2V</span>
+          <div class="app-list">
+            <span class="app"><b>IMA</b> crossing traffic</span>
+            <span class="app"><b>LTA</b> left turn</span>
+            <span class="app"><b>FCW</b> forward collision</span>
+            <span class="app"><b>EEBL</b> hard-brake relay</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Results. -->
-  <section class="section section-alt" id="results">
+  <section class="section" id="results">
     <div class="wrap">
-      <h2 class="section-title">Results</h2>
+      <p class="kicker">Results</p>
+      <h2 class="section-title">What the experiments show</h2>
 
       <div class="tabs" role="tablist">
         <button class="tab is-active" role="tab" aria-selected="true" data-tab="gen">Generation</button>
@@ -201,10 +380,9 @@
         <button class="tab" role="tab" aria-selected="false" data-tab="multicv">Multi-CV</button>
       </div>
 
-      <!-- Generation. -->
       <div class="panel is-active" id="panel-gen" role="tabpanel">
         <div class="panel-head">
-          <p>100 plain-language prompts compile, ground and run to completion with zero false failures.</p>
+          <p>100 plain-language prompts compile, ground and run, with zero false failures.</p>
           <div class="pills">
             <span class="pill">100/100 executed</span>
             <span class="pill">365/367 clean spawns</span>
@@ -212,21 +390,18 @@
           </div>
         </div>
         <figure class="card figure-card">
-          <img src="./static/images/paper/generation.png" class="zoomable" loading="lazy"
-               alt="Scenario generation over 100 scenes.">
+          <img src="./static/images/paper/generation.png" class="zoomable" loading="lazy" alt="Scenario generation over 100 scenes.">
           <figcaption>Coverage, driving quality and message-driven vs. ground-truth gaps over 100 scenes.</figcaption>
         </figure>
         <figure class="card figure-card">
-          <img src="./static/images/paper/scene_d13.png" class="zoomable" loading="lazy"
-               alt="A nine-agent left turn in Town03 under a healthy channel.">
+          <img src="./static/images/paper/scene_d13.png" class="zoomable" loading="lazy" alt="A nine-agent left turn in Town03 under a healthy channel.">
           <figcaption>A nine-agent left turn in Town03: prompt, four viewpoints, signal estimates and message deliveries.</figcaption>
         </figure>
       </div>
 
-      <!-- Refinement. -->
       <div class="panel" id="panel-refine" role="tabpanel">
         <div class="panel-head">
-          <p>Search and self-reflection turn ineffective fault tests into causally verified failures.</p>
+          <p>Search and self-reflection turn weak fault tests into verified failures.</p>
           <div class="pills">
             <span class="pill">7 &rarr; 32 of 50 admitted</span>
             <span class="pill">median 8 runs to first failure</span>
@@ -234,21 +409,18 @@
           </div>
         </div>
         <figure class="card figure-card">
-          <img src="./static/images/paper/refinement_stats.png" class="zoomable" loading="lazy"
-               alt="Scenario refinement on the 50-scene fault suite.">
+          <img src="./static/images/paper/refinement_stats.png" class="zoomable" loading="lazy" alt="Scenario refinement on the 50-scene fault suite.">
           <figcaption>Outcome by fault class, effort to first admission, and safety margin during search.</figcaption>
         </figure>
         <figure class="card figure-card">
-          <img src="./static/images/paper/refinement_case.png" class="zoomable" loading="lazy"
-               alt="Refinement example rlvw_late_freeze.">
-          <figcaption><code>rlvw_late_freeze</code>: reflection moves a mistimed SPaT freeze into the decision window, and the ego now runs the red.</figcaption>
+          <img src="./static/images/paper/refinement_case.png" class="zoomable" loading="lazy" alt="Refinement example rlvw_late_freeze.">
+          <figcaption><code>rlvw_late_freeze</code>: two rounds of reflection move the SPaT freeze in front of the decision point.</figcaption>
         </figure>
       </div>
 
-      <!-- Corridor. -->
       <div class="panel" id="panel-corridor" role="tabpanel">
         <div class="panel-head">
-          <p>An RSU relay chain extends the information horizon past the vehicle's own radio.</p>
+          <p>An RSU relay chain lets the vehicle know about junctions beyond its own radio range.</p>
           <div class="pills">
             <span class="pill">0.5 &rarr; 2.6 junctions known ahead</span>
             <span class="pill">stops 1.9 &rarr; 1.0</span>
@@ -256,24 +428,21 @@
           </div>
         </div>
         <figure class="card figure-card">
-          <img src="./static/images/paper/corridor.png" class="zoomable" loading="lazy"
-               alt="Corridor traversal along an RSU chain.">
+          <img src="./static/images/paper/corridor.png" class="zoomable" loading="lazy" alt="Corridor traversal along an RSU chain.">
           <figcaption>One prompt, three information clauses: no V2X, direct SPaT and an RSU relay chain.</figcaption>
         </figure>
       </div>
 
-      <!-- Multi-CV. -->
       <div class="panel" id="panel-multicv" role="tabpanel">
         <div class="panel-head">
-          <p>Cooperation is measurable, and pairwise: one-sided equipage buys nothing.</p>
+          <p>Cooperation can be measured, and it only works when both vehicles are equipped.</p>
           <div class="pills">
             <span class="pill">EEBL relay: 7/10 &rarr; 0/10 crashes</span>
             <span class="pill">IMA: clean yield in 10/10 seeds</span>
           </div>
         </div>
         <figure class="card figure-card">
-          <img src="./static/images/paper/multicv.png" class="zoomable" loading="lazy"
-               alt="Multi-CV cooperation: EEBL relay chain and IMA mutual yield.">
+          <img src="./static/images/paper/multicv.png" class="zoomable" loading="lazy" alt="Multi-CV cooperation: EEBL relay chain and IMA mutual yield.">
           <figcaption>EEBL V2V relay chain (a&ndash;d) and IMA mutual yield (e&ndash;h), 10 seeds per condition.</figcaption>
         </figure>
       </div>
@@ -281,7 +450,7 @@
   </section>
 
   <!-- BibTeX. -->
-  <section class="section" id="bibtex">
+  <section class="section section-alt" id="bibtex">
     <div class="wrap">
       <h2 class="section-title">BibTeX</h2>
       <div class="bibtex">
@@ -293,7 +462,7 @@
   year   = {2026},
 }</code></pre>
       </div>
-      <p class="muted small">Previously released as <i>V2XSynth</i>.</p>
+      <p class="dim-text small center">Previously released as <i>V2XSynth</i>.</p>
     </div>
   </section>
 
